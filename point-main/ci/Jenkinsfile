@@ -1,0 +1,5 @@
+@Library('ci_functions@main') _
+
+
+python_build('point','pointapp', 3000)
+

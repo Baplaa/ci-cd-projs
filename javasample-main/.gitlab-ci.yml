@@ -1,0 +1,56 @@
+# ********* GROUP INFO **********
+# Group Number: Group 10 - Set A
+# Names: Tristan Lingat and REDACTED
+# *******************************
+
+stages:
+  - build
+  - test
+  - deploy
+  - deliver
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .m2/repository
+
+
+build:
+  stage: build
+  script:
+    - "mvn -B -DskipTests clean package"
+  artifacts:
+    paths:
+      - "**/target"
+
+test:
+  stage: test
+  dependencies: 
+    - build
+  script:
+    - 'mvn test'
+  artifacts:
+    when: always
+    reports:
+      junit: target/surefire-reports/*.xml
+
+
+deploy:
+  stage: deploy
+  dependencies: 
+    - build
+  script:
+    - 'mvn -B -DskipTests -s settings.xml clean deploy'
+
+deliver:
+  stage: deliver
+  dependencies: 
+    - build
+  script:
+    - 'chmod +x ./ci/scripts/deliver.sh'
+    - './ci/scripts/deliver.sh'
+
+

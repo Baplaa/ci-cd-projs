@@ -1,0 +1,65 @@
+stages:
+  - build
+  - lint
+  - test
+  - zip
+  - package
+  - deliver
+
+cache:
+  paths:
+    - .pip_cache/
+
+before_script:
+  - 'rm -rf .coverage'
+
+build:
+  stage: build
+  script:
+    - pip3 install -r ./ci/requirements.txt
+    - pip3 install --upgrade flask
+
+lint:
+  stage: lint
+  script:
+    - "pylint --fail-under=5 *.py"
+
+test_and_coverage:
+  stage: test
+  script:
+    - find . -name "test*.py" -exec coverage run --omit '*/site-packages/*,*/dist-packages/*' {} \;
+    - coverage report
+  artifacts:
+    reports:
+      junit:
+        - test-reports/*.xml
+        - api-test-reports/*.xml
+        # - car-test-reports/*.xml
+    paths:
+      - .coverage
+
+zip_artifacts:
+  stage: zip
+  script:
+    - echo "jmeter"
+  artifacts:
+    paths:
+      - "*.py"
+    expire_in: 1 week
+
+package:
+  stage: package
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  script:
+    - echo "$CI_JOB_TOKEN" | docker login -u REDACTED --password-stdin docker.io
+    - docker build -t ${dockerRepoName}:latest --tag REDACTED/${dockerRepoName}:${imageName} .
+    - docker push REDACTED/${dockerRepoName}:${imageName}
+
+deliver:
+  stage: deliver
+  rules:
+    - if: '$DEPLOY == "true"'
+  script:
+    - docker stop ${dockerRepoName} || true && docker rm ${dockerRepoName} || true
+    - docker run -d -p ${portNum1}:${portNum2} --name ${dockerRepoName} ${dockerRepoName}:latest

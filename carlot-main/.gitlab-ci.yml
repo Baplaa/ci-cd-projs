@@ -1,0 +1,17 @@
+include:
+  - project: 'Prototypes/ci_functions'
+    file: 'vars/.gitlab-ci.yaml'
+
+stages:
+  - build
+  - lint
+  - test
+  - zip
+  - package
+  - deliver
+
+variables:
+  dockerRepoName: "carlot"
+  imageName: "carlotapp"
+  portNum1: 5001
+  portNum2: 5000 
