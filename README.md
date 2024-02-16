@@ -1,6 +1,8 @@
+![CI/CD Projects](https://github.com/Baplaa/ci-cd-projs/blob/main/assets/ci_cd_projs.png)
+
 # CI/CD Projects
 
-This repository serves as a collection of the various Continuous Integration / Continuous Delivery (CI/CD) pipelines I created over the course of my last 14-week semester at BCIT in the CIT program.
+This repository serves as a collection of the various Continuous Integration / Continuous Delivery (CI/CD) pipelines I created alongside my former group member [Alexander Nojenko](https://www.linkedin.com/in/alexvnojenko/) over the course of my last 14-week semester at BCIT in the CIT program.
 
 ## Table of Contents
 1. [Background](#background)
@@ -9,7 +11,7 @@ This repository serves as a collection of the various Continuous Integration / C
 
 ## Background
 
-The main branches of several CI/CD pipelines I created in the "Enterprise System Integration" ACIT 4850 course.
+Each directory represents the main branches of the CI/CD pipelines Alex and I created in the "Enterprise System Integration" ACIT 4850 course. The final pipeline featured in this collection—"Tristan CI Function"—is a solo-developed, supplementary pipeline for Music Museum.
 
 ## Infrastructure
 
@@ -19,7 +21,7 @@ Carlot  | *Dual Jenkins and GitLab pipeline for the professor-supplied sample ap
 CI_Functions  | *Multi-stage compartmentalized CI functionalities pipeline*
 Java Sample  | *Dual Jenkins and GitLab pipeline for the professor-supplied sample application completed as per requirements by myself*
 Point  | *Dual Jenkins and GitLab pipeline for the professor-supplied sample application completed as per requirements by myself*
-Tristan CI Functions  | *Music Museum Supplementary multi-stage compartmentalized CI functionalites pipeline*
+Tristan CI Functions  | *solo-developed, Music Museum Supplementary multi-stage compartmentalized CI functionalites pipeline*
 
 ## Technologies Used
 - [Azure Virtual Machines](https://azure.microsoft.com/en-ca/products/virtual-machines) - *cloud solution for GitLab, Jenkins, Nexus, and SonarQube*
