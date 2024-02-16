@@ -11,7 +11,7 @@ This repository serves as a collection of the various Continuous Integration / C
 
 ## Background
 
-Each directory represents the main branches of the CI/CD pipelines Alex and I created in the "Enterprise System Integration" ACIT 4850 course. The final pipeline featured in this collection—"Tristan CI Functions"—is a solo-developed, supplementary pipeline for Music Museum.
+Each directory represents the main branches of the CI/CD pipelines Alex and I created in the "Enterprise System Integration" ACIT 4850 course. The final pipeline featured in this collection—"Tristan CI Functions"—is a solo-developed, supplementary pipeline for [Music Museum](https://github.com/Baplaa/music_museum).
 
 ## Infrastructure
 
